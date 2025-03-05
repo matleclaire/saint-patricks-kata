@@ -1,7 +1,6 @@
-# Gold Coin Collector
-Kata for the Saint Patrick's day
+# Gold Coin Collector: Kata for the Saint Patrick's day
 --------------------------------
-🍀 St. Patrick’s Beer Order System: The Chaos of Raw Numbers!
+## 🍀 St. Patrick’s Beer Order System: The Chaos of Raw Numbers!
 
 Patrick runs a beer delivery service for St. Patrick’s Day. 🍻
 Each pub orders different types of beer in varying amounts.

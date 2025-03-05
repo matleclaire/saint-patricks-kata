@@ -24,9 +24,11 @@ class BeerOrderServiceTest {
                 List.of(5.0, 4.5)
         );
 
-        assertThat(invoice).contains("Guinness - 10 x 5.0€ = 50.0€");
-        assertThat(invoice).contains("Kilkenny - 5 x 4.5€ = 22.5€");
-        assertThat(invoice).contains("Total: 72.5€");
+        assertThat(invoice)
+                .contains(
+                        "Guinness - 10 x 5.0€ = 50.0€",
+                        "Kilkenny - 5 x 4.5€ = 22.5€",
+                        "Total: 72.5€");
     }
 
     @Test
