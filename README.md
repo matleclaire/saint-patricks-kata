@@ -1,4 +1,4 @@
-# Gold Coin Collector: Kata for the Saint Patrick's day
+# Kata for the Saint Patrick's day
 --------------------------------
 ## 🍀 St. Patrick’s Beer Order System: The Chaos of Raw Numbers!
 
