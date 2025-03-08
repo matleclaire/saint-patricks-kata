@@ -1,4 +1,4 @@
-package com.beauce.goldcoincollector;
+package com.beauce.kata.beerorder;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
