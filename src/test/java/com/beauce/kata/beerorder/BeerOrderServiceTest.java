@@ -16,34 +16,17 @@ class BeerOrderServiceTest {
         this.service = new BeerOrderService();
     }
 
-    @Test
-    void shouldGenerateInvoiceOldCorrectly() {
-        var pub = new Pub("O’Malley’s Pub");
-        var guinnessBeer = new Beer("Guinness", 5.0);
-        var kilkennyBeer = new Beer("Kilkenny", 4.5);
-        var invoice = service.generateInvoiceOld(
-                pub,
-                List.of(guinnessBeer.name(), kilkennyBeer.name()),
-                List.of(10, 5),
-                List.of(guinnessBeer.price(), kilkennyBeer.price())
-        );
 
-        assertThat(invoice)
-                .contains(
-                        "Guinness - 10 x 5.0€ = 50.0€",
-                        "Kilkenny - 5 x 4.5€ = 22.5€",
-                        "Total: 72.5€");
-    }
 
     @Test
-    void shouldGenerateInvoiceOldCorrectlyNEW() {
+    void shouldGenerateInvoiceCorrectly() {
         var pub = new Pub("O’Malley’s Pub");
         var guinnessBeer = new Beer("Guinness", 5.0);
         var kilkennyBeer = new Beer("Kilkenny", 4.5);
         List<BeerOrder> beerOrders = new ArrayList<>();
         beerOrders.add(new BeerOrder(guinnessBeer, 10));
         beerOrders.add(new BeerOrder(kilkennyBeer, 5));
-        var invoice = service.generateInvoiceNEW(pub, beerOrders);
+        var invoice = service.generateInvoice(pub, beerOrders);
         assertThat(invoice)
                 .contains(
                         "Guinness - 10 x 5.0€ = 50.0€",
