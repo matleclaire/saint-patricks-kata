@@ -3,9 +3,9 @@ package com.beauce.kata.beerorder;
 import java.util.List;
 
 public class BeerOrderService {
-    public String generateInvoice(String pubName, List<String> beerNames, List<Integer> quantities, List<Double> unitPrices) {
+    public String generateInvoice(Pub pub, List<String> beerNames, List<Integer> quantities, List<Double> unitPrices) {
         double totalCost = 0;
-        StringBuilder invoice = new StringBuilder("Invoice for " + pubName + ":\n");
+        StringBuilder invoice = new StringBuilder("Invoice for " + pub.name() + ":\n");
 
         for (int i = 0; i < beerNames.size(); i++) {
             double cost = quantities.get(i) * unitPrices.get(i);
