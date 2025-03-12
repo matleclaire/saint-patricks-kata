@@ -17,10 +17,14 @@ class BeerOrderServiceTest {
 
     @Test
     void shouldGenerateInvoiceCorrectly() {
+        var pub = new Pub("O’Malley’s Pub");
+        var guinnessBeer = new Beer("Guinness", 5.0);
+        var kilkennyBeer = new Beer("Kilkenny", 4.5);
         var invoice = service.generateInvoice(
-                new Pub("O’Malley’s Pub"), List.of("Guinness", "Kilkenny"),
+                pub,
+                List.of(guinnessBeer.name(), kilkennyBeer.name()),
                 List.of(10, 5),
-                List.of(5.0, 4.5)
+                List.of(guinnessBeer.price(), kilkennyBeer.price())
         );
 
         assertThat(invoice)
