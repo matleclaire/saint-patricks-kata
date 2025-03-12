@@ -35,23 +35,19 @@ class BeerOrderServiceTest {
 
     @Test
     void shouldDetectOverBudgetOrders() {
-        assertThat(
-                service.isOverBudget(
-                        List.of(20, 15),
-                        List.of(6.0, 5.5),
-                        100.0
-                )
-        ).isTrue();
+        var beerOrders = new BeerOrders(
+                new BeerOrder(new Beer("Beer1", 6.0), 20),
+                new BeerOrder(new Beer("Beer2", 5.5), 15));
+        assertThat(service.isOverBudget(beerOrders, 100.0))
+                .isTrue();
     }
 
     @Test
     void shouldNotDetectOverBudgetOrders() {
-        assertThat(
-                service.isOverBudget(
-                        List.of(5, 2),
-                        List.of(5.0, 4.0),
-                        100.0
-                )
-        ).isFalse();
+        var beerOrders = new BeerOrders(
+                new BeerOrder(new Beer("Beer1", 5.0), 5),
+                new BeerOrder(new Beer("Beer2", 4.0), 2));
+        assertThat(service.isOverBudget(beerOrders, 100.0))
+                .isFalse();
     }
 }
