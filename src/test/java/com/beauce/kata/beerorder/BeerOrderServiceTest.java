@@ -34,6 +34,24 @@ class BeerOrderServiceTest {
                         "Total: 72.5€");
     }
 
+
+    @Test
+    void shouldGenerateInvoiceNewCorrectly() {
+        var pub = new Pub("O’Malley’s Pub");
+        var guinnessBeer = new Beer("Guinness", 5.0);
+        var kilkennyBeer = new Beer("Kilkenny", 4.5);
+
+        var beerOrders = new BeerOrders(
+                new BeerOrder(guinnessBeer, 10),
+                new BeerOrder(kilkennyBeer, 5));
+        var invoice = service.generateInvoiceNew(pub, beerOrders);
+        assertThat(invoice)
+                .contains(
+                        "Guinness - 10 x 5.0€ = 50.0€",
+                        "Kilkenny - 5 x 4.5€ = 22.5€",
+                        "Total: 72.5€");
+    }
+
     @Test
     void shouldDetectOverBudgetOrders() {
         assertThat(
