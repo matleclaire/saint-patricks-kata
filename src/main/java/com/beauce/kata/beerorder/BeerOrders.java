@@ -23,9 +23,4 @@ public class BeerOrders {
                 .sum();
     }
 
-    @Deprecated
-    //TODO remove this method
-    public List<BeerOrder> getBeerOrders() {
-        return beerOrders;
-    }
 }

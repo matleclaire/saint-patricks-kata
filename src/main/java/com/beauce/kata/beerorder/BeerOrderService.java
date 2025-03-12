@@ -33,14 +33,13 @@ public class BeerOrderService {
     public String generateInvoiceNew(Pub pub,
                                   BeerOrders beerOrders) {
 
-        return generateInvoice(pub, beerOrders.getBeerOrders());
-//        var result = new StringBuilder("Invoice for %s:\n".formatted(pub.name()));
-//        beerOrders.forEach(beerOrder -> result.append("%s - %d x %.1f€ = %.1f€\n".formatted(
-//                beerOrder.beer().name(),
-//                beerOrder.quantity(),
-//                beerOrder.beer().price(),
-//                beerOrder.totalPrice())));
-//        result.append("Total: %.1f€".formatted(beerOrders.getTotalPrice()));
-//        return result.toString();
+        var result = new StringBuilder("Invoice for %s:\n".formatted(pub.name()));
+        beerOrders.forEach(beerOrder -> result.append("%s - %d x %.1f€ = %.1f€\n".formatted(
+                beerOrder.beer().name(),
+                beerOrder.quantity(),
+                beerOrder.beer().price(),
+                beerOrder.totalPrice())));
+        result.append("Total: %.1f€".formatted(beerOrders.getTotalPrice()));
+        return result.toString();
     }
 }
