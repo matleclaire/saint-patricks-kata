@@ -3,7 +3,9 @@ package com.beauce.kata.beerorder;
 import java.util.List;
 
 public class BeerOrderService {
-    public String generateInvoice(Pub pub, List<String> beerNames, List<Integer> quantities, List<Double> unitPrices) {
+
+    @Deprecated
+    public String generateInvoiceOld(Pub pub, List<String> beerNames, List<Integer> quantities, List<Double> unitPrices) {
         double totalCost = 0;
         StringBuilder invoice = new StringBuilder("Invoice for " + pub.name() + ":\n");
 
@@ -22,6 +24,13 @@ public class BeerOrderService {
 
         invoice.append("Total: ").append(totalCost).append("€");
         return invoice.toString();
+    }
+
+    public String generateInvoiceNEW(Pub pub, List<BeerOrder> beerOrders) {
+        return this.generateInvoiceOld(pub,
+                beerOrders.stream().map(BeerOrder::beer).map(Beer::name).toList(),
+                beerOrders.stream().map(BeerOrder::quantity).toList(),
+                beerOrders.stream().map(beerOrder -> beerOrder.beer().price()).toList());
     }
 
     public boolean isOverBudget(List<Integer> quantities, List<Double> unitPrices, double budget) {

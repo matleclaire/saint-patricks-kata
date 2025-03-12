@@ -3,6 +3,7 @@ package com.beauce.kata.beerorder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,17 +17,33 @@ class BeerOrderServiceTest {
     }
 
     @Test
-    void shouldGenerateInvoiceCorrectly() {
+    void shouldGenerateInvoiceOldCorrectly() {
         var pub = new Pub("O’Malley’s Pub");
         var guinnessBeer = new Beer("Guinness", 5.0);
         var kilkennyBeer = new Beer("Kilkenny", 4.5);
-        var invoice = service.generateInvoice(
+        var invoice = service.generateInvoiceOld(
                 pub,
                 List.of(guinnessBeer.name(), kilkennyBeer.name()),
                 List.of(10, 5),
                 List.of(guinnessBeer.price(), kilkennyBeer.price())
         );
 
+        assertThat(invoice)
+                .contains(
+                        "Guinness - 10 x 5.0€ = 50.0€",
+                        "Kilkenny - 5 x 4.5€ = 22.5€",
+                        "Total: 72.5€");
+    }
+
+    @Test
+    void shouldGenerateInvoiceOldCorrectlyNEW() {
+        var pub = new Pub("O’Malley’s Pub");
+        var guinnessBeer = new Beer("Guinness", 5.0);
+        var kilkennyBeer = new Beer("Kilkenny", 4.5);
+        List<BeerOrder> beerOrders = new ArrayList<>();
+        beerOrders.add(new BeerOrder(guinnessBeer, 10));
+        beerOrders.add(new BeerOrder(kilkennyBeer, 5));
+        var invoice = service.generateInvoiceNEW(pub, beerOrders);
         assertThat(invoice)
                 .contains(
                         "Guinness - 10 x 5.0€ = 50.0€",
