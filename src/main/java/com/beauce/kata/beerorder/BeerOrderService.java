@@ -27,10 +27,18 @@ public class BeerOrderService {
     }
 
     public String generateInvoiceNEW(Pub pub, List<BeerOrder> beerOrders) {
-        return this.generateInvoiceOld(pub,
-                beerOrders.stream().map(BeerOrder::beer).map(Beer::name).toList(),
-                beerOrders.stream().map(BeerOrder::quantity).toList(),
-                beerOrders.stream().map(beerOrder -> beerOrder.beer().price()).toList());
+        StringBuilder result = new StringBuilder("Invoice for %s:\n".formatted(pub.name()));
+        for (var beerOrder : beerOrders) {
+            result.append("%s - %d x %.1f€ = %.1f€\n".formatted(
+                    beerOrder.beer().name(),
+                    beerOrder.quantity(),
+                    beerOrder.beer().price(),
+                    beerOrder.totalPrice()));
+        }
+        result.append("Total: %.1f€".formatted(beerOrders.stream()
+                .mapToDouble(BeerOrder::totalPrice)
+                .sum()));
+        return result.toString();
     }
 
     public boolean isOverBudget(List<Integer> quantities, List<Double> unitPrices, double budget) {

@@ -6,4 +6,8 @@ public record BeerOrder(Beer beer, int quantity) {
             throw new IllegalArgumentException("Quantity must be greater than 0");
         }
     }
+
+    public double totalPrice() {
+        return beer.price() * quantity;
+    }
 }
