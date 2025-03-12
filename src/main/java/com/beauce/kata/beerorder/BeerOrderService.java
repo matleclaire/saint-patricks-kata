@@ -5,21 +5,6 @@ import java.util.List;
 public class BeerOrderService {
 
 
-    @Deprecated
-    public String generateInvoice(Pub pub, List<BeerOrder> beerOrders) {
-        StringBuilder result = new StringBuilder("Invoice for %s:\n".formatted(pub.name()));
-        for (var beerOrder : beerOrders) {
-            result.append("%s - %d x %.1f€ = %.1f€\n".formatted(
-                    beerOrder.beer().name(),
-                    beerOrder.quantity(),
-                    beerOrder.beer().price(),
-                    beerOrder.totalPrice()));
-        }
-        result.append("Total: %.1f€".formatted(beerOrders.stream()
-                .mapToDouble(BeerOrder::totalPrice)
-                .sum()));
-        return result.toString();
-    }
 
     public boolean isOverBudget(List<Integer> quantities, List<Double> unitPrices, double budget) {
         double totalCost = 0;
@@ -30,7 +15,7 @@ public class BeerOrderService {
         return totalCost > budget;
     }
 
-    public String generateInvoiceNew(Pub pub,
+    public String generateInvoice(Pub pub,
                                   BeerOrders beerOrders) {
 
         var result = new StringBuilder("Invoice for %s:\n".formatted(pub.name()));
